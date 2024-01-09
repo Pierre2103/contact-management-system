@@ -18,7 +18,7 @@ struct Contact {
 int numContacts = 0;
 
 //Function Prototyping
-void addContact(struct Contact contacts[], int *numContacts, int *nextId);
+void addContact();
 void modifyContact();
 void deleteContact();
 void searchContact();
@@ -67,4 +67,36 @@ int main() {
     } while (choice != 6);
 
     return 0;
+}
+void addContact(struct Contact contacts[], int *numContacts, int *nextId) {
+    if (*numContacts < MAX_CONTACTS) {
+        struct Contact newContact;
+        newContact.id = (*nextId)++;
+        printf("Enter Name: ");
+        scanf("%s", newContact.name);
+        printf("Enter Email: ");
+        scanf("%s", newContact.email);
+        printf("Enter Phone: ");
+        scanf("%s", newContact.phone);
+
+        // Choose category
+        printf("Choose Category:\n");
+        printf("1. Internal Team\n");
+        printf("2. Client\n");
+        printf("3. Supplier\n");
+        printf("Enter Category (1-3): ");
+        scanf("%d", &newContact.category);
+
+        // Validate category input
+        if (newContact.category < 1 || newContact.category > 3) {
+            printf("Invalid category. Setting category to 1 (Internal Team).\n");
+            newContact.category = 1;
+        }
+
+        contacts[*numContacts] = newContact;
+        (*numContacts)++;
+        printf("Contact added successfully!\n");
+    } else {
+        printf("Contact limit reached. Cannot add more contacts.\n");
+    }
 }
