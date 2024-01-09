@@ -4,33 +4,38 @@
 #define MAX_CONTACTS 100
 
 // Struct to represent a contact
-struct Contact {
+struct Contact
+{
     int id;
     char name[50];
     char email[50];
     char phone[15];
     int category;
-
 };
+
+// Array to store contacts
+struct Contact contacts[MAX_CONTACTS];
 
 
 // Variable to Keep track of the number of contacts
 int numContacts = 0;
 
-//Function Prototyping
+// Function Prototyping
 void addContact();
 void modifyContact();
 void deleteContact();
 void searchContact();
 void displayContact();
 
-int main() {
+int main()
+{
     struct Contact contacts[MAX_CONTACTS];
     int numContacts = 0;
     int nextId = 1; // ID for the next contact to be added
     int choice;
 
-    do {
+    do
+    {
         printf("\nContact Management System\n");
         printf("1. Add Contact\n");
         printf("2. Display Contacts\n");
@@ -41,35 +46,38 @@ int main() {
         printf("Enter your choice: ");
         scanf("%d", &choice);
 
-        switch (choice) {
-            case 1:
-                addContact(contacts, &numContacts, &nextId);
-                break;
-            case 2:
-                displayContacts(contacts, numContacts);
-                break;
-            case 3:
-                searchContact(contacts, numContacts);
-                break;
-            case 4:
-                modifyContact(contacts, numContacts);
-                break;
-            case 5:
-                deleteContact(contacts, &numContacts);
-                break;
-            case 6:
-                printf("Exiting the program. Goodbye!\n");
-                break;
-            default:
-                printf("Invalid choice. Please try again.\n");
+        switch (choice)
+        {
+        case 1:
+            addContact(contacts, &numContacts, &nextId);
+            break;
+        case 2:
+            displayContacts(contacts, numContacts);
+            break;
+        case 3:
+            searchContact(contacts, numContacts);
+            break;
+        case 4:
+            modifyContact(contacts, numContacts);
+            break;
+        case 5:
+            deleteContact(contacts, &numContacts);
+            break;
+        case 6:
+            printf("Exiting the program. Goodbye!\n");
+            break;
+        default:
+            printf("Invalid choice. Please try again.\n");
         }
 
     } while (choice != 6);
 
     return 0;
 }
-void addContact(struct Contact contacts[], int *numContacts, int *nextId) {
-    if (*numContacts < MAX_CONTACTS) {
+void addContact(struct Contact contacts[], int *numContacts, int *nextId)
+{
+    if (*numContacts < MAX_CONTACTS)
+    {
         struct Contact newContact;
         newContact.id = (*nextId)++;
         printf("Enter Name: ");
@@ -88,7 +96,8 @@ void addContact(struct Contact contacts[], int *numContacts, int *nextId) {
         scanf("%d", &newContact.category);
 
         // Validate category input
-        if (newContact.category < 1 || newContact.category > 3) {
+        if (newContact.category < 1 || newContact.category > 3)
+        {
             printf("Invalid category. Setting category to 1 (Internal Team).\n");
             newContact.category = 1;
         }
@@ -96,7 +105,42 @@ void addContact(struct Contact contacts[], int *numContacts, int *nextId) {
         contacts[*numContacts] = newContact;
         (*numContacts)++;
         printf("Contact added successfully!\n");
-    } else {
+    }
+    else
+    {
         printf("Contact limit reached. Cannot add more contacts.\n");
+    }
+}
+
+void searchContact()
+{
+    char searchName[50];
+    int foundIndex = -1;
+
+    printf("\nEnter the name of the contact to search: ");
+    scanf("%s", searchName);
+
+    // Search for the contact
+    for (int i = 0; i < numContacts; i++)
+    {
+        if (strcmp(contacts[i].name, searchName) == 0)
+        {
+            foundIndex = i;
+            break;
+        }
+    }
+
+    if (foundIndex != -1)
+    {
+        // Display the found contact details
+        printf("\nContact Details:\n");
+        printf("Name: %s\n", contacts[foundIndex].name);
+        printf("Email: %s\n", contacts[foundIndex].email);
+        printf("Phone: %s\n", contacts[foundIndex].phone);
+        printf("Category: %s\n", contacts[foundIndex].category);
+    }
+    else
+    {
+        printf("Contact not found.\n");
     }
 }
