@@ -112,6 +112,30 @@ void addContact(struct Contact contacts[], int *numContacts, int *nextId)
     }
 }
 
+    void deleteContact()
+{
+    char searchName[50];
+    int foundIndex = -1; 
+
+    printf("Enter the name of the contact you want to delete: ");
+    scanf("%s", searchName);
+
+    for (int i = 0; i < numContacts; ++i) {
+        if (strcmp(contacts[i].name, searchName) == 0) {
+            foundIndex = i;
+            break;
+        }
+    }
+
+    if (foundIndex != -1) {
+        contacts[foundIndex] = contacts[numContacts - 1]; // Replace the deleted contact with the last contact
+        numContacts--;
+        printf("Contact '%s' has been deleted.\n", searchName);
+    } else {
+        printf("Contact '%s' not found.\n", searchName);
+    }
+}
+
 void searchContact()
 {
     char searchName[50];
