@@ -26,6 +26,7 @@ void modifyContact();
 void deleteContact();
 void searchContact();
 void displayContact();
+const char* getCategoryName(int category);
 
 int main()
 {
@@ -166,5 +167,18 @@ void searchContact()
     else
     {
         printf("Contact not found.\n");
+    }
+}
+
+const char* getCategoryName(int category) {
+    switch (category) {
+        case 1:
+            return "Internal Team";
+        case 2:
+            return "Client";
+        case 3:
+            return "Supplier";
+        default:
+            return "Unknown";
     }
 }
