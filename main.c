@@ -59,7 +59,7 @@ int main()
             searchContact(contacts, numContacts);
             break;
         case 4:
-            modifyContact(contacts, numContacts);
+            modifyContact(contacts);
             break;
         case 5:
             deleteContact(contacts, &numContacts);
@@ -171,7 +171,7 @@ void searchContact()
 }
 
     
-void modifyContact(struct Contact contacts[], int numContacts){
+void modifyContact(struct Contact contacts[]){
     int foundIndex;
     int id_detail;
     printf("Enter the ID you want modify:");
@@ -195,11 +195,25 @@ void modifyContact(struct Contact contacts[], int numContacts){
         scanf("%s", contacts[foundIndex].phone);
         break;
         case 4:
-        printf("Category: %s, will be modified by :", contacts[foundIndex].category);
-        scanf("%s", contacts[foundIndex].category);
+        printf("Category: %d, will be modified by :", contacts[foundIndex].category);
+        scanf("%d", contacts[foundIndex].category);
         break;
         default:
         printf("unknow");
     }
     return 0;
 }
+
+const char* getCategoryName(int category) {
+    switch (category) {
+        case 1:
+            return "Internal Team";
+        case 2:
+            return "Client";
+        case 3:
+            return "Supplier";
+        default:
+            return "Unknown";
+    }
+}
+
