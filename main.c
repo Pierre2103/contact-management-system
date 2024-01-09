@@ -26,6 +26,7 @@ void modifyContact();
 void deleteContact();
 void searchContact();
 void displayContact();
+const char* getCategoryName(int category);
 
 int main()
 {
