@@ -1,3 +1,27 @@
+/**
+ * @file main2.c
+ * @brief Contact Management System
+ *
+ * This program allows users to manage contacts by performing various operations such as adding a contact,
+ * displaying all contacts, searching for a contact by name, modifying a contact, deleting a contact,
+ * and adding multiple contacts in a formatted manner.
+ *
+ * The program uses a struct to represent a contact, with fields for ID, name, email, phone, and category.
+ * The contacts are stored in an array, and the number of contacts and the ID for the next contact to be added
+ * are tracked using variables.
+ *
+ * The main program loop presents a menu of options to the user and performs the corresponding operation
+ * based on the user's choice. The program continues to loop until the user chooses to exit.
+ *
+ * The program includes functions for adding a contact, displaying all contacts, searching for a contact by name,
+ * modifying a contact, deleting a contact, and adding multiple contacts in a formatted manner.
+ *
+ * @note The program has a maximum limit of 100 contacts.
+ * @note The category values for contacts are as follows:
+ *       - 1: Internal Team
+ *       - 2: Client
+ *       - 3: Supplier
+ */
 #include <stdio.h>
 #include <string.h>
 
@@ -27,6 +51,7 @@ void deleteContact(struct Contact contacts[], int *numContacts);
 void searchContact(struct Contact contacts[], int numContacts);
 void displayContact(struct Contact contacts[], int numContacts);
 void addMultipleContacts(struct Contact contacts[], int *numContacts, int *nextId);
+void clearInputBuffer();
 
 int main()
 {
@@ -341,4 +366,12 @@ void addMultipleContacts(struct Contact contacts[], int *numContacts, int *nextI
     {
         printf("❌ Contact limit reached. Some contacts may not have been added.\n");
     }
+
+    // Clear the input buffer
+    clearInputBuffer();
+}
+
+void clearInputBuffer() {
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF) { }
 }
