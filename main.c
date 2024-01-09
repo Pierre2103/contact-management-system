@@ -144,3 +144,37 @@ void searchContact()
         printf("Contact not found.\n");
     }
 }
+
+    
+void modifyContact(struct Contact contacts[], int numContacts){
+    int foundIndex;
+    int id_detail;
+    printf("Enter the ID you want modify:");
+    scanf("%d", &foundIndex);
+    foundIndex--;
+
+    printf("What do you want to modify:");
+    scanf("%d", &id_detail);
+
+    switch(id_detail){
+        case 1:
+        printf("Name: %s, will be modified by :", contacts[foundIndex].name);
+        scanf("%s", contacts[foundIndex].name);
+        break;
+        case 2:
+        printf("Email: %s, will be modified by :", contacts[foundIndex].email);
+        scanf("%s", contacts[foundIndex].email);
+        break;
+        case 3:
+        printf("Phone: %s, will be modified by :", contacts[foundIndex].phone);
+        scanf("%s", contacts[foundIndex].phone);
+        break;
+        case 4:
+        printf("Category: %s, will be modified by :", contacts[foundIndex].category);
+        scanf("%s", contacts[foundIndex].category);
+        break;
+        default:
+        printf("unknow");
+    }
+    return 0;
+}
