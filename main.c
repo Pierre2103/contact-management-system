@@ -13,40 +13,13 @@ struct Contact
     int category;
 };
 
-<<<<<<< Updated upstream
-// Array to store contacts
 struct Contact contacts[MAX_CONTACTS];
-
-=======
-struct Contact contacts[MAX_CONTACTS];
->>>>>>> Stashed changes
 
 // Variable to Keep track of the number of contacts
 int numContacts = 0;
 int nextId = 1; // ID for the next contact to be added
 int choice;
 
-<<<<<<< Updated upstream
-// Function Prototyping
-void addContact();
-void modifyContact();
-void deleteContact();
-void searchContact();
-void displayContact();
-const char* getCategoryName(int category);
-
-int main()
-{
-    struct Contact contacts[MAX_CONTACTS];
-    int numContacts = 0;
-    int nextId = 1; // ID for the next contact to be added
-    int choice;
-
-    do
-    {
-        printf("\nContact Management System\n");
-        printf("1. Add Contact\n");
-=======
 //Function Prototyping
 void addContact(struct Contact contacts[], int *numContacts, int *nextId);
 void modifyContact(struct Contact contacts[], int numContacts);
@@ -60,7 +33,6 @@ int main() {
         printf("\n----------------------------------------------\n");
         printf("Contact Management System\n");
         printf("1. Add Contact \n");
->>>>>>> Stashed changes
         printf("2. Display Contacts\n");
         printf("3. Search Contact\n");
         printf("4. Modify Contact\n");
@@ -71,30 +43,6 @@ int main() {
         scanf("%d", &choice);
         printf("\n----------------------------------------------\n");
 
-<<<<<<< Updated upstream
-        switch (choice)
-        {
-        case 1:
-            addContact(contacts, &numContacts, &nextId);
-            break;
-        case 2:
-            displayContacts(contacts, numContacts);
-            break;
-        case 3:
-            searchContact(contacts, numContacts);
-            break;
-        case 4:
-            modifyContact(contacts);
-            break;
-        case 5:
-            deleteContact(contacts, &numContacts);
-            break;
-        case 6:
-            printf("Exiting the program. Goodbye!\n");
-            break;
-        default:
-            printf("Invalid choice. Please try again.\n");
-=======
         switch (choice) {
             case 1:
                 addContact(contacts, &numContacts, &nextId);
@@ -119,7 +67,6 @@ int main() {
                 break;
             default:
                 printf("❌ Invalid choice. Please try again.\n");
->>>>>>> Stashed changes
         }
 
     } while (choice != 6);
@@ -148,133 +95,13 @@ void addContact(struct Contact contacts[], int *numContacts, int *nextId)
         scanf("%d", &newContact.category);
 
         // Validate category input
-<<<<<<< Updated upstream
-        if (newContact.category < 1 || newContact.category > 3)
-        {
-            printf("Invalid category. Setting category to 1 (Internal Team).\n");
-=======
         if (newContact.category < 1 || newContact.category > 3) {
             printf("❌ Invalid category. Setting category to 1 (Internal Team).\n");
->>>>>>> Stashed changes
             newContact.category = 1;
         }
 
         contacts[*numContacts] = newContact;
         (*numContacts)++;
-<<<<<<< Updated upstream
-        printf("Contact added successfully!\n");
-    }
-    else
-    {
-        printf("Contact limit reached. Cannot add more contacts.\n");
-    }
-}
-
-    void deleteContact()
-{
-    char searchName[50];
-    int foundIndex = -1; 
-
-    printf("Enter the name of the contact you want to delete: ");
-    scanf("%s", searchName);
-
-    for (int i = 0; i < numContacts; ++i) {
-        if (strcmp(contacts[i].name, searchName) == 0) {
-            foundIndex = i;
-            break;
-        }
-    }
-
-    if (foundIndex != -1) {
-        contacts[foundIndex] = contacts[numContacts - 1]; // Replace the deleted contact with the last contact
-        numContacts--;
-        printf("Contact '%s' has been deleted.\n", searchName);
-    } else {
-        printf("Contact '%s' not found.\n", searchName);
-    }
-}
-
-void searchContact()
-{
-    char searchName[50];
-    int foundIndex = -1;
-
-    printf("\nEnter the name of the contact to search: ");
-    scanf("%s", searchName);
-
-    // Search for the contact
-    for (int i = 0; i < numContacts; i++)
-    {
-        if (strcmp(contacts[i].name, searchName) == 0)
-        {
-            foundIndex = i;
-            break;
-        }
-    }
-
-    if (foundIndex != -1)
-    {
-        // Display the found contact details
-        printf("\nContact Details:\n");
-        printf("Name: %s\n", contacts[foundIndex].name);
-        printf("Email: %s\n", contacts[foundIndex].email);
-        printf("Phone: %s\n", contacts[foundIndex].phone);
-        printf("Category: %s\n", contacts[foundIndex].category);
-    }
-    else
-    {
-        printf("Contact not found.\n");
-    }
-}
-
-    
-void modifyContact(struct Contact contacts[]){
-    int foundIndex;
-    int id_detail;
-    printf("Enter the ID you want modify:");
-    scanf("%d", &foundIndex);
-    foundIndex--;
-
-    printf("What do you want to modify:");
-    scanf("%d", &id_detail);
-
-    switch(id_detail){
-        case 1:
-        printf("Name: %s, will be modified by :", contacts[foundIndex].name);
-        scanf("%s", contacts[foundIndex].name);
-        break;
-        case 2:
-        printf("Email: %s, will be modified by :", contacts[foundIndex].email);
-        scanf("%s", contacts[foundIndex].email);
-        break;
-        case 3:
-        printf("Phone: %s, will be modified by :", contacts[foundIndex].phone);
-        scanf("%s", contacts[foundIndex].phone);
-        break;
-        case 4:
-        printf("Category: %d, will be modified by :", contacts[foundIndex].category);
-        scanf("%d", contacts[foundIndex].category);
-        break;
-        default:
-        printf("unknow");
-    }
-    return 0;
-}
-
-const char* getCategoryName(int category) {
-    switch (category) {
-        case 1:
-            return "Internal Team";
-        case 2:
-            return "Client";
-        case 3:
-            return "Supplier";
-        default:
-            return "Unknown";
-    }
-}
-
-=======
         printf("✅ Contact added successfully!\n");
     } else {
         printf("❌ Contact limit reached. Cannot add more contacts.\n");
@@ -446,4 +273,3 @@ void addMultipleContacts(struct Contact contacts[], int *numContacts, int *nextI
         printf("❌ Contact limit reached. Some contacts may not have been added.\n");
     }
 }
->>>>>>> Stashed changes
