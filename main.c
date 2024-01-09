@@ -22,6 +22,7 @@ void addContact();
 void modifyContact();
 void deleteContact();
 void searchContact();
+void displayContact();
 
 int main {
 
